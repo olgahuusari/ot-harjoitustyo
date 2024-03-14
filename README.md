@@ -1,2 +1,3 @@
-# Ohte
-**BOLD** and _italics :3_
+# Ohjelmistotekniikka, harjoitustyö
+## Tehtävät
+### Viikko 1
