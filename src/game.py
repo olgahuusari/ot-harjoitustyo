@@ -1,19 +1,19 @@
 import pygame
-import sys
-sys.path.append("//wsl.localhost/Ubuntu/home/olgahuusari/ot-harjoitustyo/src/")
 from spaceship import SpaceShip
 
 class Game:
     def __init__(self):
         pygame.init()
-        self.screen=pygame.display.set_mode((700,500))
+        self.window=pygame.display.set_mode((700,500))
         self.clock = pygame.time.Clock()
+        self.spaceship = SpaceShip()
+        self.tick = 40
 
 
-        self.open_screen()
+        self.open_window()
 
     
-    def open_screen(self):
+    def open_window(self):
         
         while True:
             for event in pygame.event.get():
@@ -21,25 +21,28 @@ class Game:
                     exit()
                 if event.type==pygame.KEYDOWN:
                     if event.key==pygame.K_RIGHT:
-                        SpaceShip().rotate_r = True
+                        self.spaceship.rotate_l = True
                     if event.key==pygame.K_LEFT:
-                        SpaceShip().rotate_l = True
+                        self.spaceship.rotate_r = True
  
                 if event.type==pygame.KEYUP:
                     if event.key==pygame.K_RIGHT:
-                        SpaceShip().rotate_r=False
+                        self.spaceship.rotate_l=False
                     if event.key==pygame.K_LEFT:
-                        SpaceShip().rotate_l=False
+                        self.spaceship.rotate_r=False
 
-            if SpaceShip().rotate_r == True:
-                SpaceShip().spaceship = pygame.transform.rotate(SpaceShip().spaceship, 10)
-            if SpaceShip().rotate_l == True:
-                SpaceShip().spaceship = pygame.transform.rotate(SpaceShip().spaceship, -10)
+            if self.spaceship.rotate_r == True:
+                self.spaceship.degree += 10
+            if self.spaceship.rotate_l == True:
+                self.spaceship.degree -= 10
+            spaceship_rot = pygame.transform.rotate(self.spaceship.img, self.spaceship.degree)
+            new_rect = spaceship_rot.get_rect(center = self.spaceship.img.get_rect(center = (self.spaceship.coord())).center)
 
-            self.screen.fill((0,0,0))
-            self.screen.blit(SpaceShip().spaceship, (SpaceShip().coord()))
+            self.window.fill((0,0,0))
+            self.window.blit(spaceship_rot, new_rect)
             pygame.display.flip()
-            self.clock.tick(60)
+            self.clock.tick(self.tick)
+
 
 if __name__ == "__main__":
     Game()
