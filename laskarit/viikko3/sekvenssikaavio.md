@@ -1,3 +1,4 @@
+'''mermaid
 sequenceDiagram
   participant main
   participant laitehallinto
@@ -19,5 +20,6 @@ sequenceDiagram
   bussi244 -->> kallen_kortti : "arvo"
   kallen_kortti -->> bussi244 : "1.5"
   bussi244 -->> kallen_kortti : "FALSE"
+'''
   
   
