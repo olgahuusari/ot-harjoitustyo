@@ -8,6 +8,7 @@ sequenceDiagram
   main ->> laitehallinto : "lisaa_lataaja(rautatietori)"
   main ->> laitehallinto : "lisaa_lukija(ratikka6)"
   main ->> laitehallinto : "lisaa_lukija(bussi244)"
+  create participant lippu_luukku
   main ->> lippu_luukku : "osta_matkakortti("Kalle")"
   activate lippu_luukku
   create participant kallen_kortti
@@ -22,12 +23,13 @@ sequenceDiagram
   ratikka6 -->> kallen_kortti : "arvo"
   kallen_kortti -->> ratikka6 : "3"
   ratikka6 -->> kallen_kortti : "vahenna_arvoa(RATIKKA)"
+  ratikka6 -->> main : "TRUE"
   deactivate ratikka6
   main ->> bussi244 : "osta_lippu(kallen_kortti, 2)"
   activate bussi244
   bussi244 -->> kallen_kortti : "arvo"
   kallen_kortti -->> bussi244 : "1.5"
-  bussi244 -->> kallen_kortti : "FALSE"
+  bussi244 -->> main : "FALSE"
   deactivate bussi244
 ```
   
