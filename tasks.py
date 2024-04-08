@@ -13,7 +13,7 @@ def start(ctx):
     ctx.run("python3 src/game.py", pty=True)
 
 @task
-def run_tests(ctx):
+def test(ctx):
     ctx.run("pytest src", pty=True)
 
 
