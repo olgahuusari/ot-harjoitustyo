@@ -1,5 +1,5 @@
 # Asteroidit
-Asteroidit on peli, jossa pelaaja ohjaa näytön keskellä olevaa avaruusalusta ja ampuu sitä kohti lentäviä asteroideja.
+Asteroidit on peli, jossa pelaaja ohjaa näytön keskellä olevaa avaruusalusta ja ampuu sitä kohti lentäviä asteroideja. Avaruusalus pyörii nuolinäppäimiä painamalla ja ampuu lasereita välilyöntiä painamalla. Pelin häviää, jos asteroidi osuu alukseen. 
 
 
 ### Dokumentaatio
