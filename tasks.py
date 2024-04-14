@@ -10,14 +10,14 @@ def coverage_report(ctx):
 
 @task
 def start(ctx):
-    ctx.run("python3 src/game.py", pty=True)
+    ctx.run("python3 src/start.py", pty=True)
 
 @task
 def test(ctx):
     ctx.run("pytest src", pty=True)
 
 @task
-def pylint(ctx):
+def lint(ctx):
     ctx.run("pylint src", pty=True)
 
 
