@@ -6,7 +6,7 @@
 | 28.3. |  1   | pelin koodausta |
 | 13.4. |  3   | pylint käyttöön, uutta toiminnallisuutta peliin |
 | 14.4. |  1   | pelin koodausta, virheiden korjausta |
-|       |      |  |
+|       |  1   | testejä lisää, oma luokka pelin aloitukselle |
 |       |      |  |
 |       |      |  |
 |       |      |  |
