@@ -16,4 +16,8 @@ def start(ctx):
 def test(ctx):
     ctx.run("pytest src", pty=True)
 
+@task
+def pylint(ctx):
+    ctx.run("pylint src", pty=True)
+
 
