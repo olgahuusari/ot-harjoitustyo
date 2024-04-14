@@ -13,8 +13,6 @@ class Game:
         self.lasers = []
         self.tick = 40
 
-        self.open_window()
-
     def open_window(self):
 
         while True:
@@ -54,5 +52,3 @@ class Game:
             self.clock.tick(self.tick)
 
 
-if __name__ == "__main__":
-    Game()

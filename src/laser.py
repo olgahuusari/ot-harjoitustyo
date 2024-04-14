@@ -22,7 +22,4 @@ class Laser:
     def move(self):
         self.x += 10*math.cos(math.radians(self.degree))
         self.y -= 10*math.sin(math.radians(self.degree))
-
-laser = Laser(0)
-print(laser.img.get_width(), laser.img.get_height())
         
