@@ -39,16 +39,16 @@ class Game:
             if self.spaceship.rotate_l is True:
                 self.spaceship.degree -= 10
 
-            spaceship_rot, new_rect = self.spaceship.rotate()
-
             self.window.fill((0, 0, 0))
-            self.window.blit(spaceship_rot, new_rect)
 
             for laser in self.lasers:
                 rect = laser.img.get_rect()
-                laser.move()
                 rect = rect.move(laser.x, laser.y)
                 self.window.blit(laser.img, rect)
+                laser.move()
+
+            spaceship_rot, new_rect = self.spaceship.rotate()
+            self.window.blit(spaceship_rot, new_rect)
 
             pygame.display.flip()
             self.clock.tick(self.tick)

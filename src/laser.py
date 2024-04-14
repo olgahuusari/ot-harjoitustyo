@@ -15,11 +15,14 @@ class Laser:
     def get_img(self):
         img = pygame.image.load(os.path.join(
             dirname, 'assets', 'laser.png'))
-        img_ = pygame.transform.scale(img, (70, 50))
+        img_ = pygame.transform.scale(img, (20, 2))
         img__ = pygame.transform.rotate(img_, self.degree)
         return img__
 
     def move(self):
-        self.x = 5*math.cos(math.radians(self.degree))
-        self.y = 5*math.sin(math.radians(self.degree))
+        self.x += 10*math.cos(math.radians(self.degree))
+        self.y -= 10*math.sin(math.radians(self.degree))
+
+laser = Laser(0)
+print(laser.img.get_width(), laser.img.get_height())
         
