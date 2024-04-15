@@ -2,6 +2,7 @@ import sys
 import pygame
 from spaceship import SpaceShip
 from laser import Laser
+from events import Events
 
 
 class Game:
@@ -10,6 +11,7 @@ class Game:
         self.window = pygame.display.set_mode((700, 500))
         self.clock = pygame.time.Clock()
         self.spaceship = SpaceShip()
+        self.events = Events()
         self.lasers = []
         self.tick = 40
 
@@ -17,25 +19,16 @@ class Game:
 
         while True:
             for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
-                    self.spaceship.rotate_l = True
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
-                    self.spaceship.rotate_r = True
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-                    new_laser = Laser(self.spaceship.degree)
-                    self.lasers.append(new_laser)
-
-                if event.type == pygame.KEYUP and event.key == pygame.K_RIGHT:
-                    self.spaceship.rotate_l = False
-                if event.type == pygame.KEYUP and event.key == pygame.K_LEFT:
-                    self.spaceship.rotate_r = False
-
-            if self.spaceship.rotate_r is True:
-                self.spaceship.degree += 10
-            if self.spaceship.rotate_l is True:
-                self.spaceship.degree -= 10
+                self.events.event_handler(event)
+            if self.events.quit == True:
+                sys.exit()
+            if self.events.rotate_r == True:
+                self.spaceship.degree += 5
+            if self.events.rotate_l == True:
+                self.spaceship.degree -= 5
+            if self.events.laser == True:
+                self.lasers.append(Laser(self.spaceship.degree))
+                self.events.laser = False
 
             self.window.fill((0, 0, 0))
 
