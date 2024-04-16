@@ -13,7 +13,6 @@ class Asteroid:
         self.degree = self.get_degree()
         self.dir = 0
         self.get_hit = False
-        self.lose_game = False
 
     def get_img(self):
         img = pygame.image.load(os.path.join(
@@ -45,8 +44,9 @@ class Asteroid:
         return x, y
 
     def get_degree(self):
+        degree = 0
         center_x = 350-(self.img.get_width()/2)
-        center_y = 250+(self.img.get_height()/2)
+        center_y = 250-(self.img.get_height()/2)
         if self.x == center_x:
             if self.y > center_y:
                 self.dir = (0, -2)
@@ -68,9 +68,9 @@ class Asteroid:
         else:
             x_min = 1
             y_min = 1
-            if self.x > 350:
+            if self.x > 350-self.img.get_width()/2:
                 x_min = -1
-            if self.y > 250:
+            if self.y > 250-self.img.get_width()/2:
                 y_min = -1
             self.x += 1*math.sin(math.radians(self.degree))*x_min
             self.y += 1*math.cos(math.radians(self.degree))*y_min

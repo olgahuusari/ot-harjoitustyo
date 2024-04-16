@@ -9,8 +9,8 @@ class Laser:
         super().__init__()
         self.degree = degree
         self.img = self.get_img()
-        self.x = 350
-        self.y = 250
+        self.x = 332
+        self.y = 236
 
     def get_img(self):
         img = pygame.image.load(os.path.join(

@@ -4,22 +4,21 @@ from spaceship import SpaceShip
 from laser import Laser
 from events import Events
 from asteroid import Asteroid
+from ui import UI
 
 class Game:
     def __init__(self):
-        pygame.init()
-        self.window = pygame.display.set_mode((700, 500))
         self.clock = pygame.time.Clock()
+        self.tick = 40
         self.spaceship = SpaceShip()
         self.events = Events()
-        self.lasers = []
-        self.asteroids = []
-        self.tick = 40
+        self.ui = UI()
+        self.lose_game = 0
 
-    def open_window(self):
+    def game_loop(self):
         for i in range(0, 10):
             asteroid = Asteroid()
-            self.asteroids.append(asteroid)
+            self.ui.asteroids.append(asteroid)
 
         while True:
             for event in pygame.event.get():
@@ -31,25 +30,11 @@ class Game:
             if self.events.rotate_l is True:
                 self.spaceship.degree -= 5
             if self.events.laser is True:
-                self.lasers.append(Laser(self.spaceship.degree))
+                self.ui.lasers.append(Laser(self.spaceship.degree))
                 self.events.laser = False
+            if self.events.instructions is False:
+                self.ui.instructions = False
 
-            self.window.fill((0, 0, 0))
-
-            for asteroid in self.asteroids:
-                rect = asteroid.img.get_rect()
-                rect = rect.move(asteroid.x, asteroid.y)
-                self.window.blit(asteroid.img, rect)
-                asteroid.move()
-
-            for laser in self.lasers:
-                rect = laser.img.get_rect()
-                rect = rect.move(laser.x, laser.y)
-                self.window.blit(laser.img, rect)
-                laser.move()
-
-            spaceship_rot, new_rect = self.spaceship.rotate()
-            self.window.blit(spaceship_rot, new_rect)
-
+            self.ui.draw_window(self.spaceship)
             pygame.display.flip()
             self.clock.tick(self.tick)
