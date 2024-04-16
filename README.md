@@ -9,3 +9,5 @@ Asteroidit on peli, jossa pelaaja ohjaa näytön keskellä olevaa avaruusalusta 
 
 [changelog](https://github.com/olgahuusari/ot-harjoitustyo/tree/main/dokumentaatio/changelog.md)
 
+[arkkitehtuuri](https://github.com/olgahuusari/ot-harjoitustyo/blob/main/dokumentaatio/arkkitehtuuri.md)
+
