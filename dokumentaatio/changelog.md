@@ -5,6 +5,7 @@
 - Käyttäjä voi pyörittää avaruusalusta nuolinäppäimillä
 
 ## Viikko 4
-- Lisätty luokka "Laser" joka luo lasersäteen käyttäjän painaessa välilyöntiä
-- Laserit lähtevät liikkumaan ruudulla samaan suuntaan kuin mihin avaruusalus osoittaa
-- Testejä lisätty Spaceship ja Laser luokkien toiminnan tarkistamiseksi
+- Lisätty luokat Laser, Asteroid, UI ja Events
+- Laserit lähtevät liikkumaan ruudulla samaan suuntaan kuin mihin avaruusalus osoittaa ja niitä voi ampua välilyöntiä painamalla
+- Asteroidit liikkuvat ruudun reunoilta ruudun keskipistettä kohti
+- Testejä lisätty
