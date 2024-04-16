@@ -1,10 +1,11 @@
 import unittest
 from laser import Laser
+from spaceship import SpaceShip
 
 class TestLaser(unittest.TestCase):
     def setUp(self):
-        self.laser = Laser()
-
+        self.spaceship = SpaceShip()
+        
     def test_laser_move_works(self):
         laser = Laser(0)
         laser.move()

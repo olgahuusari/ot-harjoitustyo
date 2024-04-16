@@ -8,18 +8,18 @@ class Events:
         self.laser = False
 
     def event_handler(self, event):
-            print(event)
-            if event.type == pygame.QUIT:
-                self.quit = True
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
+        if event.type == pygame.QUIT:
+            self.quit = True
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RIGHT:
                 self.rotate_l = True
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
+            if event.key == pygame.K_LEFT:
                 self.rotate_r = True
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+            if event.key == pygame.K_SPACE:
                 self.laser = True
 
-            if event.type == pygame.KEYUP and event.key == pygame.K_RIGHT:
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_RIGHT:
                 self.rotate_l = False
-            if event.type == pygame.KEYUP and event.key == pygame.K_LEFT:
+            if event.key == pygame.K_LEFT:
                 self.rotate_r = False
-
