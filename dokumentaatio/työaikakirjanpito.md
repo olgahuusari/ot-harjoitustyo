@@ -10,5 +10,6 @@
 | 15.4. |  3   | luokat asteroid ja events luotu. uusia testejä. alustava luokkakaavio tehty  |
 |       |  2   | asteroidien liikkumisen koodausta |
 | 16.4. |  3   | pelin koodin parantamista. luokka UI luotu. testejä lisää. |
+| 18.4. |  2   | uutta toiminnallisuutta peliin |
 |  yht. |  19  |  |
 
