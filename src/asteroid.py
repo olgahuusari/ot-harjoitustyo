@@ -12,7 +12,6 @@ class Asteroid:
         self.x, self.y = self.get_coord()
         self.degree = self.get_degree()
         self.dir = 0
-        self.get_hit = False
 
     def get_img(self):
         img = pygame.image.load(os.path.join(

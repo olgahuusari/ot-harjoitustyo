@@ -13,7 +13,6 @@ class Game:
         self.spaceship = SpaceShip()
         self.events = Events()
         self.ui = UI()
-        self.lose_game = 0
 
     def game_loop(self):
         for i in range(0, 10):
