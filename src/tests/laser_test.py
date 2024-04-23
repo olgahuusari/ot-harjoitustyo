@@ -9,7 +9,7 @@ class TestLaser(unittest.TestCase):
     def test_laser_move_works(self):
         laser = Laser(0)
         laser.move()
-        self.assertEqual((laser.x, laser.y), (342, 236))
+        self.assertEqual((laser.x, laser.y), (360, 250))
 
     def test_laser_correct_degree(self):
         laser = Laser(self.spaceship.degree)

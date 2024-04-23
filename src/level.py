@@ -1,6 +1,4 @@
 from asteroid import Asteroid
-from ui import UI
-from events import Events
 
 class Level:
     def __init__(self):
