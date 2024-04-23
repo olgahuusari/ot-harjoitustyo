@@ -11,5 +11,8 @@
 |       |  2   | asteroidien liikkumisen koodausta |
 | 16.4. |  3   | pelin koodin parantamista. luokka UI luotu. testejä lisää. |
 | 18.4. |  2   | uutta toiminnallisuutta peliin |
-|  yht. |  19  |  |
+| 21.4. |  1   | uutta toiminnallisuutta |
+| 22.4. |  2   | koodin parantelua, lisää testejä |
+| 23.4. |      | sekvenssikaavio, lasereiden ja asteroidien osumistarkkuutta paranneltu |
+|  yht. |  22  |  |
 
