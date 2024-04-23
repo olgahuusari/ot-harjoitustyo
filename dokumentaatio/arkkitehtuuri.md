@@ -1,3 +1,7 @@
+# Arkkitehtuuri
+
+## Luokkakaavio
+
 ```mermaid
     classDiagram
     class Game{
@@ -41,3 +45,5 @@
     Game "1" --"1" UI
 
 ```
+
+## Sekvenssikaavio laserin osumisesta asteroidiin
