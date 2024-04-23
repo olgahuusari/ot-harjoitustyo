@@ -14,5 +14,5 @@
 | 21.4. |  1   | uutta toiminnallisuutta |
 | 22.4. |  2   | koodin parantelua, lisää testejä |
 | 23.4. |  3   | sekvenssikaavio, lasereiden ja asteroidien osumistarkkuutta paranneltu |
-|  yht. |  25  |  |
+|  yht. |  27  |  |
 
