@@ -7,6 +7,7 @@ class Events:
         self.quit = False
         self.laser = False
         self.instructions = True
+        self.game_over = False
 
     def event_handler(self, event):
         if event.type == pygame.QUIT:
@@ -17,6 +18,8 @@ class Events:
             if event.key == pygame.K_LEFT:
                 self.rotate_r = True
             if event.key == pygame.K_SPACE:
+                if self.game_over is True:
+                    self.game_over = False
                 self.laser = True
                 self.instructions = False
 

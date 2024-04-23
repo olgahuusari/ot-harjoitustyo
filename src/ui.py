@@ -19,6 +19,11 @@ class UI:
         points = self.font.render(f'Points: {self.points}', True, (255, 255, 255), (0, 0, 0))
         self.window.blit(points, (600, 0))
 
+        if self.game_over is True:
+            game_lost = self.font.render('Game Over. Start a new one by pressing space!',
+                                          True, (255, 255, 255), (0, 0, 0))
+            self.window.blit(game_lost, (200, 150))
+
         if self.instructions is True:
             text = self.font.render('Rotate the spaceship with left and right arrow keys',
                                     True, (255, 255, 255), (0, 0, 0,))
@@ -28,6 +33,8 @@ class UI:
             self.window.blit(text2, (0, 20))
 
         for asteroid in self.asteroids:
+            if self.game_over is True:
+                continue
             self.collide.asteroid_hit_ship(asteroid, spaceship)
             if self.collide.asteroid_ship is True:
                 self.game_over = True
@@ -37,6 +44,8 @@ class UI:
             asteroid.move()
 
         for laser in self.lasers:
+            if self.game_over is True:
+                continue
             for asteroid in self.asteroids:
                 self.collide.laser_hit_asteroid(laser, asteroid)
                 if self.collide.laser_asteroid is True:

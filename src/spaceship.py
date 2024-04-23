@@ -11,6 +11,7 @@ class SpaceShip:
             dirname, 'assets', 'spaceship.png'))
         self.rect = self.img.get_rect(center=(336, 236))
         self.degree = 0
+        self.x, self.y = 336, 236
 
     def rotate(self):
         spaceship_rot = pygame.transform.rotate(
