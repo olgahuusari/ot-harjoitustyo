@@ -41,6 +41,7 @@
     class Collide{
         laser_asteroid
         asteroid_ship
+    }
 
     Game "1" -- "1" Collide
     Game "1" -- "1" SpaceShip
