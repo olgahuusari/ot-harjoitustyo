@@ -5,8 +5,8 @@ class Collide:
         self.asteroid_ship = False
 
     def laser_hit_asteroid(self, laser, asteroid):
-        if (asteroid.x-laser.img.get_width() < laser.x < asteroid.x+asteroid.img.get_width()) and (
-        asteroid.y-laser.img.get_height() < laser.y < asteroid.y+asteroid.img.get_height()):
+        if (asteroid.x-laser.img.get_width()+5 < laser.x < asteroid.x+asteroid.img.get_width()-5) and (
+        asteroid.y-laser.img.get_height()+5 < laser.y < asteroid.y+asteroid.img.get_height()-5):
             self.laser_asteroid = True
 
     def asteroid_hit_ship(self, asteroid, ship):
