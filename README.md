@@ -11,3 +11,41 @@ Asteroidit on peli, jossa pelaaja ohjaa näytön keskellä olevaa avaruusalusta 
 
 [arkkitehtuuri](https://github.com/olgahuusari/ot-harjoitustyo/blob/main/dokumentaatio/arkkitehtuuri.md)
 
+### Asennus
+Asenna riippuvuudet komennolla
+```bash
+poetry install
+```
+
+Käynnistä peli komennolla
+```bash
+poetry run invoke start
+```
+
+### Komentorivitoiminnot
+#### Ohjelman suorittaminen
+Pelin voi käynnistää komennolla
+```bash
+poetry run invoke start
+```
+
+#### Testaus
+Testit voi suorittaa komennolla
+```bash
+poetry run invoke test
+```
+
+#### Testikattavuus
+Testikattavuusraportin saa komennolla
+```bash
+poetry run invoke coverage-report
+```
+Raportin voi avata html.cov hakemistosta
+
+#### Pylint
+Tiedoston pylint.rc määrittelemät tarkistukset voi suorittaa komennolla
+```bash
+poetry run invoke lint
+```
+
+
