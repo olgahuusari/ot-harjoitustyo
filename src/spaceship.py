@@ -9,13 +9,13 @@ class SpaceShip:
         super().__init__()
         self.img = pygame.image.load(os.path.join(
             dirname, 'assets', 'spaceship.png'))
-        self.rect = self.img.get_rect(center=(336, 236))
+        self.rect = self.img.get_rect(center=(350, 250))
         self.degree = 0
-        self.x, self.y = 336, 236
+        self.x, self.y = 350, 250
 
     def rotate(self):
         spaceship_rot = pygame.transform.rotate(
                 self.img, self.degree)
         new_rect = spaceship_rot.get_rect(
-                center=self.img.get_rect(center=(336, 236)).center)
+                center=self.img.get_rect(center=(350, 250)).center)
         return spaceship_rot, new_rect

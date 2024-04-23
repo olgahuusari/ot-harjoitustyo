@@ -32,17 +32,6 @@ class UI:
                                      True, (255, 255, 255), (0, 0, 0))
             self.window.blit(text2, (0, 20))
 
-        for asteroid in self.asteroids:
-            if self.game_over is True:
-                continue
-            self.collide.asteroid_hit_ship(asteroid, spaceship)
-            if self.collide.asteroid_ship is True:
-                self.game_over = True
-            rect = asteroid.img.get_rect()
-            rect = rect.move(asteroid.x, asteroid.y)
-            self.window.blit(asteroid.img, rect)
-            asteroid.move()
-
         for laser in self.lasers:
             if self.game_over is True:
                 continue
@@ -65,3 +54,14 @@ class UI:
 
         spaceship_rot, new_rect = spaceship.rotate()
         self.window.blit(spaceship_rot, new_rect)
+
+        for asteroid in self.asteroids:
+            if self.game_over is True:
+                continue
+            self.collide.asteroid_hit_ship(asteroid, spaceship)
+            if self.collide.asteroid_ship is True:
+                self.game_over = True
+            rect = asteroid.img.get_rect()
+            rect = rect.move(asteroid.x, asteroid.y)
+            self.window.blit(asteroid.img, rect)
+            asteroid.move()
