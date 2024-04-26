@@ -43,7 +43,7 @@
         asteroid_ship
     }
 
-    Game "1" -- "1" Collide
+    UI "1" -- "1" Collide
     Game "1" -- "1" SpaceShip
     Game "1" -- "0..1000" Laser
     Game "1" --"1" Events
