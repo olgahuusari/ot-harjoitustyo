@@ -47,7 +47,7 @@
     Game "1" -- "1" SpaceShip
     Game "1" -- "0..1000" Laser
     Game "1" --"1" Events
-    UI "1" --"100" Asteroid
+    UI "1" --"0..100" Asteroid
     Game "1" --"1" UI
 
 ```
