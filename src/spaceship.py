@@ -8,10 +8,14 @@ class SpaceShip:
     def __init__(self):
         super().__init__()
         self.img = pygame.image.load(os.path.join(
-            dirname, 'assets', 'spaceship.png'))
+            dirname, 'assets', 'spaceship1.png'))
         self.rect = self.img.get_rect(center=(350, 250))
         self.degree = 0
         self.x, self.y = 350, 250
+
+    def get_img(self, number):
+        return pygame.image.load(os.path.join(
+            dirname, 'assets', 'spaceship' + str(number) + '.png'))
 
     def rotate(self):
         spaceship_rot = pygame.transform.rotate(

@@ -8,6 +8,9 @@ class Events:
         self.laser = False
         self.instructions = True
         self.game_over = False
+        self.event_pos = 0
+        self.button = False
+        self.event_pos = (0, 0)
 
     def event_handler(self, event):
         if event.type == pygame.QUIT:
@@ -20,8 +23,13 @@ class Events:
             if event.key == pygame.K_SPACE:
                 if self.game_over is True:
                     self.game_over = False
+                    return
                 self.laser = True
                 self.instructions = False
+
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            self.button = True
+            self.event_pos = event.pos
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_RIGHT:

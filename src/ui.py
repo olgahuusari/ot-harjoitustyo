@@ -1,6 +1,7 @@
 import pygame
 from collide import Collide
 from asteroid import Asteroid
+from spaceship import SpaceShip
 
 class UI:
     def __init__(self):
@@ -13,16 +14,30 @@ class UI:
         self.font = pygame.font.SysFont('Arial', 17)
         self.game_over = False
         self.points = 0
+        self.level = 1
+        self.ships = []
+        self.show_ships = False
+        self.ship_text = self.font.render('Ships', True, (0, 0, 0), (255, 255, 255))
+        self.ship_rect = self.ship_text.get_rect(topleft=(650, 80))
+        self.choose_ship = 1
 
     def draw_window(self, spaceship):
         self.window.fill((0, 0, 0))
         points = self.font.render(f'Points: {self.points}', True, (255, 255, 255), (0, 0, 0))
-        self.window.blit(points, (600, 0))
+        self.window.blit(points, (550, 0))
+        level = self.font.render(f'Level: {self.level}', True, (255, 255, 255), (0, 0, 0))
+        self.window.blit(level, (640, 0))
 
         if self.game_over is True:
             game_lost = self.font.render('Game Over. Start a new one by pressing space!',
                                           True, (255, 255, 255), (0, 0, 0))
             self.window.blit(game_lost, (200, 150))
+
+        if self.level >= 2:
+            self.window.blit(self.ship_text, (650, 80))
+
+        if self.show_ships is True:
+            self.ship_selection()
 
         if self.instructions is True:
             text = self.font.render('Rotate the spaceship with left and right arrow keys',
@@ -61,7 +76,43 @@ class UI:
             self.collide.asteroid_hit_ship(asteroid, spaceship)
             if self.collide.asteroid_ship is True:
                 self.game_over = True
+                self.collide.asteroid_ship = False
+                continue
             rect = asteroid.img.get_rect()
             rect = rect.move(asteroid.x, asteroid.y)
             self.window.blit(asteroid.img, rect)
             asteroid.move()
+
+    def get_asteroids(self, asteroids, i):
+        for n in range(0, i):
+            asteroid = Asteroid()
+            asteroids.append(asteroid)
+        return asteroids
+
+    def check_clicks(self, event_pos):
+        if self.ship_rect.collidepoint(event_pos) is True:
+            if self.show_ships is True:
+                self.show_ships = False
+                return
+            self.show_ships = True
+        for ship in self.ships:
+            if ship[1].collidepoint(event_pos):
+                index = self.ships.index(ship)
+                if index == 0:
+                    self.choose_ship = 1
+                else:
+                    self.choose_ship = index*2
+
+    def get_ships(self):
+        ship = SpaceShip()
+        list = [1, 2, 4, 6, 8]
+        for i in list:
+            ship_img = ship.get_img(i)
+            ship_pos = (640, 110+list.index(i)*50)
+            ship_rect = ship_img.get_rect(topleft=ship_pos)
+            self.ships.append((ship_img, ship_rect, ship_pos))
+
+    def ship_selection(self):
+        for ship in self.ships:
+            if self.ships.index(ship) < self.level:
+                self.window.blit(ship[0], ship[2])
