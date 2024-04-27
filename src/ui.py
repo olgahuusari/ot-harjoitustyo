@@ -51,7 +51,7 @@ class UI:
         self.examine_asteroids(spaceship)
 
     def get_asteroids(self, asteroids, i):
-        for n in range(0, i):
+        for _ in range(0, i):
             asteroid = Asteroid()
             asteroids.append(asteroid)
         return asteroids
@@ -132,7 +132,7 @@ class UI:
             self.show_ships = True
         if self.show_ships is True:
             for ship in self.ships:
-                if ship[1].collidepoint(event_pos):
+                if ship[1].collidepoint(event_pos) and self.ships.index(ship) < self.level:
                     self.choose_ship = self.ships.index(ship)+1
 
     def get_ships(self):

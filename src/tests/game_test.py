@@ -27,6 +27,8 @@ class TestGame(unittest.TestCase):
         self.game.examine_event_module()
         self.assertEqual(len(self.game.ui.lasers), lasers+1)
 
+    
+
 
 
     
