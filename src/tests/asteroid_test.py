@@ -34,3 +34,17 @@ class TestAsteroid(unittest.TestCase):
         self.asteroid.x = 1000
         self.asteroid.y = 700
         self.assertEqual(round(self.asteroid.get_degree(), 2), 55.33)
+
+    def test_move_x(self):
+        self.asteroid.y = 240
+        self.asteroid.x = 800
+        self.asteroid.get_degree()
+        self.asteroid.move()
+        self.assertEqual(self.asteroid.x, 798)
+
+    def test_move_y(self):
+        self.asteroid.y = 800
+        self.asteroid.x = 335
+        self.asteroid.get_degree()
+        self.asteroid.move()
+        self.assertEqual(self.asteroid.y, 798)

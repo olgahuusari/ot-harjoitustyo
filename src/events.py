@@ -8,6 +8,7 @@ class Events:
         self.laser = False
         self.instructions = True
         self.game_over = False
+        self.pause = False
         self.event_pos = 0
         self.button = False
         self.event_pos = (0, 0)
@@ -23,6 +24,9 @@ class Events:
             if event.key == pygame.K_SPACE:
                 if self.game_over is True:
                     self.game_over = False
+                    return
+                if self.pause is True:
+                    self.pause = False
                     return
                 self.laser = True
                 self.instructions = False
