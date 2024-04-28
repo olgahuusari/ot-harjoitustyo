@@ -9,5 +9,5 @@ Sovellus on Asteroidit-peli, jossa keskellä ruutua oleva avaruusalus ampuu sit�
 - Asteroidit lentävät näytön reunoilta avaruusalusta kohti. Tehty
 - Lasereiden osuessa asteroidiin, se tuhoutuu. Tehty
 - Pelin häviää, jos asteroidi osuu avaruusalukseen. Tehty 
-- Käyttäjä voi päästä pelissä eri tasoille, jotka mahdollistavat esim. aluksen muokkauksen tai uusien laserpyssyjen hankkimisen. Eri tasojen tarjoamat ominaisuudet tarkentuvat vielä projektin edetessä. 
+- Käyttäjä voi päästä pelissä eri tasoille, jotka mahdollistavat eri näköisten avaruusalusten käytön. Tehty
 - Käyttäjä voi tallentaa pelin ja palata siihen myöhemmin.
