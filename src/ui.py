@@ -4,7 +4,12 @@ from asteroid import Asteroid
 from spaceship import SpaceShip
 
 class UI:
+    """Class that handles user interface
+    """
     def __init__(self):
+        """Constructor function that assigns the starting values of the
+        attributes
+        """
         pygame.init()
         self.collide = Collide()
         self.window = pygame.display.set_mode((700, 500))
@@ -26,10 +31,18 @@ class UI:
         self.new_ship = False
 
     def setup(self):
+        """Function that is executed at the start of the game that creates
+        lists of asteroids and spaceship options
+        """
         self.asteroids = self.get_asteroids([], 10)
         self.get_ships()
 
     def draw_window(self, spaceship):
+        """Function that creates the game window
+
+        Args:
+            spaceship (class): class for the spaceship
+        """
         self.window.fill((0, 0, 0))
         points = self.font.render(f'Points: {self.points}', True, (255, 255, 255), (0, 0, 0))
         self.window.blit(points, (360, 0))
@@ -51,12 +64,25 @@ class UI:
         self.examine_asteroids(spaceship)
 
     def get_asteroids(self, asteroids, i):
+        """Function that either creates a list of the asteorids or adds
+        new ones
+
+        Args:
+            asteroids (list): empty or non-empty list of asteroids
+            i (int): number of asteroids that are added to the list
+
+        Returns:
+            list: list of asteroids that are shown in the game
+        """
         for _ in range(0, i):
             asteroid = Asteroid()
             asteroids.append(asteroid)
         return asteroids
 
     def examine_attributes(self):
+        """Function that examines the attributes and shows the correct
+        things on the screen
+        """
         if self.game_over is True:
             game_lost = self.font.render('Game Over. Start a new one by pressing space!',
                                           True, (255, 255, 255), (0, 0, 0))
@@ -83,6 +109,11 @@ class UI:
             self.window.blit(text2, (200, 150))
 
     def examine_lasers(self):
+        """Function that goes through lasers that are shown on screen
+        and calls the collide module to check whether they have hit asteroids
+        or gone off the screen
+        After that the function calls the laser module to move the lasers
+        """
         for laser in self.lasers:
             if self.game_over is True:
                 continue
@@ -106,6 +137,13 @@ class UI:
             laser.move()
 
     def examine_asteroids(self, spaceship):
+        """Function that goes through asteroids shown on screen and calls
+        for the collide module to calculate whether they have hit the ship.
+        After that the function calls for the asteroid module to move them
+
+        Args:
+            spaceship (class): class for the spaceship
+        """
         for asteroid in self.asteroids:
             if self.game_over is True:
                 continue
@@ -122,6 +160,13 @@ class UI:
             asteroid.move()
 
     def check_clicks(self, event_pos):
+        """Function that is called when the user has pressed a button on
+        screen. It calculates which button was pressed and changes the 
+        attributes accordingly
+
+        Args:
+            event_pos ((int, int)): coordinates of where the user clicked
+        """
         if self.pause_rect.collidepoint(event_pos) is True:
             self.pause = True
         if self.ship_rect.collidepoint(event_pos) is True:
@@ -136,6 +181,9 @@ class UI:
                     self.choose_ship = self.ships.index(ship)+1
 
     def get_ships(self):
+        """Function that loads the image, creates rectangle and calculates the position
+        of the different ship options. These are added to the attribute ships
+        """
         ship = SpaceShip()
         for i in range(1, 6):
             ship_img = ship.get_img(i)
@@ -144,6 +192,8 @@ class UI:
             self.ships.append((ship_img, ship_rect, ship_pos))
 
     def ship_selection(self):
+        """Functions that shows the different ship options on screen
+        """
         for ship in self.ships:
             if self.ships.index(ship) < self.level:
                 self.window.blit(ship[0], ship[2])

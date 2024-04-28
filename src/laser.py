@@ -5,7 +5,15 @@ import pygame
 dirname = os.path.dirname(__file__)
 
 class Laser:
+    """Class that constructs a laser
+    """
     def __init__(self, degree):
+        """Constructor function
+
+        Args:
+            degree (int): degree that states at which direction the laser
+            should be pointed at
+        """
         super().__init__()
         self.degree = degree
         self.img = self.get_img()
@@ -13,6 +21,12 @@ class Laser:
         self.y = 250
 
     def get_img(self):
+        """Function that loads the image for the laser and scales it to
+        the right size and rotates it at the right angle
+
+        Returns:
+            Image: correctly scaled and rotated image of the laser
+        """
         img = pygame.image.load(os.path.join(
             dirname, 'assets', 'laser.png'))
         img_ = pygame.transform.scale(img, (20, 2))
@@ -20,6 +34,9 @@ class Laser:
         return img__
 
     def move(self):
+        """Function that moves the laser away from the center
+        at the right angle
+        """
         self.x += 10*math.cos(math.radians(self.degree))
         self.y -= 10*math.sin(math.radians(self.degree))
         

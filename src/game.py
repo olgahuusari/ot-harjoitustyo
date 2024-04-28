@@ -6,7 +6,11 @@ from events import Events
 from ui import UI
 
 class Game:
+    """Class containing the game loop 
+    """
     def __init__(self):
+        """Constructor function
+        """
         self.clock = pygame.time.Clock()
         self.spaceship = SpaceShip()
         self.events = Events()
@@ -14,6 +18,8 @@ class Game:
         self.tick = 40
 
     def game_loop(self):
+        """Function containinf the game loop that runs the game
+        """
         self.ui.setup()
 
         while True:
@@ -44,6 +50,10 @@ class Game:
             self.clock.tick(self.tick)
 
     def examine_event_module(self):
+        """Function that goes through the the attributes of the 
+        Events class and makes appropriate changes to its own attributes
+        or those of the UI class
+        """
         if self.events.quit is True:
             sys.exit()
         if self.events.rotate_r is True:
@@ -51,7 +61,8 @@ class Game:
         if self.events.rotate_l is True:
             self.spaceship.degree -= 5
         if self.events.laser is True:
-            self.ui.lasers.append(Laser(self.spaceship.degree))
+            if len(self.ui.lasers) <= 1000:
+                self.ui.lasers.append(Laser(self.spaceship.degree))
             self.events.laser = False
         if self.events.instructions is False:
             self.ui.instructions = False
@@ -61,6 +72,8 @@ class Game:
             self.events.button = False
 
     def game_over_loop(self):
+        """Loop that is executed if user loses the game
+        """
         while self.events.game_over is True:
             for event in pygame.event.get():
                 self.events.event_handler(event)
@@ -75,6 +88,8 @@ class Game:
         self.ui.choose_ship = 1
 
     def pause_loop(self):
+        """Loop that is executed if the game is paused
+        """
         while self.events.pause is True:
             for event in pygame.event.get():
                 self.events.event_handler(event)
