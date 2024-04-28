@@ -10,9 +10,15 @@
 - Asteroidit liikkuvat ruudun reunoilta ruudun keskipistettä kohti
 - Testejä lisätty
 
-## Viikko5 
+## Viikko 5 
 - Lisätty luokka Collide, joka laskee osuuko laser asteroidiin tai asteroidi alukseen
 - Lisätty luokka Level, joka on vielä vähän vaiheessa, nimi saattaa muuttua. Tällä hetkellä se luo listan asteroideja
 - Laserin osuessa asteroidiin molemmat häviävät ruudulta ja pelaaja saa yhden pisteen
 - Asteroidin osuessa alukseen pelin häviää, minkä jälkeen voi aloittaa uuden pelin
 - Testien haarautumakattavuutta nostettu
+
+## Viikko 6
+- Poistettu luokka Level, koska se tuntui turhalta
+- Pelissä voi nyt päästä eri tasoille, kun saa tarpeeksi pisteitä. Viitostasolle asti uudelle tasolle päästessä käytettäväksi saa eri näköisen avaruusaluksen. Lisäksi pelin vauhti kiihtyy.
+- Pelin voi pistää pauselle
+- Testejä lisätty, ja docstring aloitettu
