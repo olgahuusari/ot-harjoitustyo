@@ -1,5 +1,8 @@
 # Arkkitehtuuri
 
+## Koodin rakenne
+Pelin koodi koostuu moduuleista ja luokista eri toiminnoille. Alla oleva luokkakaavio havainnollistaa moduulien välisiä yhteyksiä. Game-moduuli pyörittää peliä, ja kutsuu tarvittaessa muita moduuleja. Spaceship, Asteroid ja Laser luokat luovat ja käsittelevät ruudulla näytettäviä kuvakkeita. Events-luokka käy läpi pelissä tapahtuvat toiminnot ja niiden perusteella moduulit Game ja UI muuttavat pelin kulkua. UI moduuli on vastuussa käyttöliittymästä. Sen kautta myös luodaan asteroidit ja tarkastetaan, onko laser osunut asteroidiin, tai asteroidi avaruusalukseen Collide-luokan avulla.
+
 ## Luokkakaavio
 
 ```mermaid
