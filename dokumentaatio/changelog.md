@@ -21,4 +21,4 @@
 - Poistettu luokka Level, koska se tuntui turhalta
 - Pelissä voi nyt päästä eri tasoille, kun saa tarpeeksi pisteitä. Viitostasolle asti uudelle tasolle päästessä käytettäväksi saa eri näköisen avaruusaluksen. Lisäksi pelin vauhti kiihtyy.
 - Pelin voi pistää pauselle
-- Testejä lisätty, ja docstring aloitettu
+- Docstring-dokumentaatio lisätty koodiin
