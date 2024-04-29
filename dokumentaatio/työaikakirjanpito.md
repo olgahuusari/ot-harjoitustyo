@@ -16,5 +16,6 @@
 | 23.4. |  3   | sekvenssikaavio, lasereiden ja asteroidien osumistarkkuutta paranneltu, koodin parantelua |
 | 26.4. |  6   | uutta toiminnallisuutta: pelissä pääsee eri tasoille ja voi vaihtaa alusta |
 | 27.4. |  7   | koodin korjailua ja lisää testejä |
-|  yht. |  40  |  |
+| 28.4. |  2   | arkkitehtuurin dokumentaatiota lisää, ja käyttöohjeet luotu |
+|  yht. |  42  |  |
 
