@@ -17,5 +17,6 @@
 | 26.4. |  6   | uutta toiminnallisuutta: pelissä pääsee eri tasoille ja voi vaihtaa alusta |
 | 27.4. |  7   | koodin korjailua ja lisää testejä |
 | 28.4. |  2   | arkkitehtuurin dokumentaatiota lisää, ja käyttöohjeet luotu |
-|  yht. |  42  |  |
+| 6.5.  |  3   | bugien korjausta, pieniä muutoksia koodiin |
+|  yht. |  45  |  |
 
