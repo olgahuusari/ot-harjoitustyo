@@ -19,6 +19,7 @@ class Laser:
         self.img = self.get_img()
         self.x = 350
         self.y = 250
+        self.speed = 1
 
     def get_img(self):
         """Function that loads the image for the laser and scales it to
@@ -37,6 +38,6 @@ class Laser:
         """Function that moves the laser away from the center
         at the right angle
         """
-        self.x += 10*math.cos(math.radians(self.degree))
-        self.y -= 10*math.sin(math.radians(self.degree))
+        self.x += (8+self.speed)*math.cos(math.radians(self.degree))
+        self.y -= (8+self.speed)*math.sin(math.radians(self.degree))
         

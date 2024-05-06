@@ -17,6 +17,7 @@ class SpaceShip:
         self.rect = self.img.get_rect(center=(350, 250))
         self.degree = 0
         self.x, self.y = 350, 250
+        self.speed = 1
 
     def get_img(self, number):
         """Functions that loads the correct image of the spaceship
@@ -38,7 +39,7 @@ class SpaceShip:
             Img, rect : image and rectangle of the rotated spaceship
         """
         spaceship_rot = pygame.transform.rotate(
-                self.img, self.degree)
+                self.img, (self.degree+self.speed))
         new_rect = spaceship_rot.get_rect(
                 center=self.img.get_rect(center=(350, 250)).center)
         return spaceship_rot, new_rect

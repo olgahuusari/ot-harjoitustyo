@@ -16,6 +16,7 @@ class Asteroid:
         self.x, self.y = self.get_coord()
         self.degree = self.get_degree()
         self.dir = 0
+        self.speed = 1
 
     def get_img(self):
         """Function that downloads image for the asteroid
@@ -76,14 +77,14 @@ class Asteroid:
         center_y = 250-(self.img.get_height()/2)
         if self.x == center_x:
             if self.y > center_y:
-                self.dir = (0, -2)
+                self.dir = (0, -1)
             else:
-                self.dir = (0, 2)
+                self.dir = (0, 1)
         elif self.y == center_y:
             if self.x > center_x:
-                self.dir = (-2, 0)
+                self.dir = (-1, 0)
             else:
-                self.dir = (2, 0)
+                self.dir = (1, 0)
         else:
             degree = math.degrees(math.atan(abs(self.x-center_x)/abs(self.y-center_y)))
         return degree
@@ -93,8 +94,8 @@ class Asteroid:
         using the degree
         """
         if self.dir != 0:
-            self.x += self.dir[0]
-            self.y += self.dir[1]
+            self.x += self.dir[0]*self.speed
+            self.y += self.dir[1]*self.speed
         else:
             x_min = 1
             y_min = 1
@@ -102,5 +103,5 @@ class Asteroid:
                 x_min = -1
             if self.y > 250-self.img.get_width()/2:
                 y_min = -1
-            self.x += 1*math.sin(math.radians(self.degree))*x_min
-            self.y += 1*math.cos(math.radians(self.degree))*y_min
+            self.x += self.speed*math.sin(math.radians(self.degree))*x_min
+            self.y += self.speed*math.cos(math.radians(self.degree))*y_min

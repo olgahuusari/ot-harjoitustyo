@@ -24,8 +24,6 @@ class UI:
         self.show_ships = False
         self.ship_text = self.font.render('Ships', True, (0, 0, 0), (255, 255, 255))
         self.ship_rect = pygame.Rect(630, 80, 100, 20)
-        self.pause_text = self.font.render('Pause game', True, (0, 0, 0), (255, 255, 255))
-        self.pause_rect = pygame.Rect(610, 0, 90, 20)
         self.pause = False
         self.choose_ship = 1
         self.new_ship = False
@@ -48,8 +46,8 @@ class UI:
         self.window.blit(points, (360, 0))
         level = self.font.render(f'Level: {self.level}', True, (255, 255, 255), (0, 0, 0))
         self.window.blit(level, (280, 0))
-        pygame.draw.rect(self.window, (255, 255, 255), (610, 0, 90, 20))
-        self.window.blit(self.pause_text, (610, 0))
+        pause = self.font.render('Press P to pause', True, (255, 255, 255), (0, 0, 0))
+        self.window.blit(pause, (580, 0))
 
         self.examine_attributes()
 
@@ -76,6 +74,7 @@ class UI:
         """
         for _ in range(0, i):
             asteroid = Asteroid()
+            asteroid.speed = self.level
             asteroids.append(asteroid)
         return asteroids
 
@@ -117,6 +116,10 @@ class UI:
         for laser in self.lasers:
             if self.game_over is True:
                 continue
+            if (laser.x < -laser.img.get_width() or laser.x > 700) or (
+            laser.y < -laser.img.get_height() or laser.y > 500):
+                self.lasers.remove(laser)
+                continue
             for asteroid in self.asteroids:
                 self.collide.laser_hit_asteroid(laser, asteroid)
                 if self.collide.laser_asteroid is True:
@@ -124,11 +127,10 @@ class UI:
                     self.collide.laser_asteroid = False
                     self.asteroids.remove(asteroid)
                     new_asteroid = Asteroid()
+                    new_asteroid.speed = self.level
                     self.asteroids.append(new_asteroid)
                     self.lasers.remove(laser)
-            if (laser.x < -laser.img.get_width() or laser.x > 700) or (
-            laser.y < -laser.img.get_height() or laser.y > 500):
-                self.lasers.remove(laser)
+                    break
             rect = laser.img.get_rect()
             rect = rect.move(laser.x, laser.y)
             self.window.blit(laser.img, rect)
@@ -167,8 +169,6 @@ class UI:
         Args:
             event_pos ((int, int)): coordinates of where the user clicked
         """
-        if self.pause_rect.collidepoint(event_pos) is True:
-            self.pause = True
         if self.ship_rect.collidepoint(event_pos) is True:
             self.new_ship = False
             if self.show_ships is True:

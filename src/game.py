@@ -18,7 +18,7 @@ class Game:
         self.tick = 40
 
     def game_loop(self):
-        """Function containinf the game loop that runs the game
+        """Function containing the game loop that runs the game
         """
         self.ui.setup()
 
@@ -40,8 +40,8 @@ class Game:
 
             if self.ui.points >= self.ui.level*10:
                 self.ui.level += 1
+                self.spaceship.speed = self.ui.level
                 self.ui.asteroids = self.ui.get_asteroids(self.ui.asteroids, (self.ui.level-1)*5)
-                self.tick += 5
                 self.ui.new_ship = True
 
             self.ui.draw_window(self.spaceship)
@@ -62,10 +62,14 @@ class Game:
             self.spaceship.degree -= 5
         if self.events.laser is True:
             if len(self.ui.lasers) <= 1000:
-                self.ui.lasers.append(Laser(self.spaceship.degree))
+                laser = Laser(self.spaceship.degree)
+                laser.speed = self.ui.level
+                self.ui.lasers.append(laser)
             self.events.laser = False
         if self.events.instructions is False:
             self.ui.instructions = False
+        if self.events.pause is True:
+            self.ui.pause = True
 
         if self.events.button is True:
             self.ui.check_clicks(self.events.event_pos)

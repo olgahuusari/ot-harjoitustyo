@@ -30,6 +30,8 @@ class Events:
                     return
                 self.laser = True
                 self.instructions = False
+            if event.key == pygame.K_p:
+                self.pause = True
 
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             self.button = True
