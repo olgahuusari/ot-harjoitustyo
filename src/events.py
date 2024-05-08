@@ -22,9 +22,6 @@ class Events:
             if event.key == pygame.K_LEFT:
                 self.rotate_r = True
             if event.key == pygame.K_SPACE:
-                if self.game_over is True:
-                    self.game_over = False
-                    return
                 if self.pause is True:
                     self.pause = False
                     return
@@ -32,6 +29,9 @@ class Events:
                 self.instructions = False
             if event.key == pygame.K_p:
                 self.pause = True
+            if event.key == pygame.K_RETURN:
+                if self.game_over is True:
+                    self.game_over = False
 
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             self.button = True

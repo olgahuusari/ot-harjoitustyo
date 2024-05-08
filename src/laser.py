@@ -15,13 +15,12 @@ class Laser:
             should be pointed at
         """
         super().__init__()
-        self.degree = degree
-        self.img = self.get_img()
+        self._degree = degree
+        self.img = self._get_img()
         self.x = 350
         self.y = 250
-        self.speed = 1
 
-    def get_img(self):
+    def _get_img(self):
         """Function that loads the image for the laser and scales it to
         the right size and rotates it at the right angle
 
@@ -31,13 +30,13 @@ class Laser:
         img = pygame.image.load(os.path.join(
             dirname, 'assets', 'laser.png'))
         img_ = pygame.transform.scale(img, (20, 2))
-        img__ = pygame.transform.rotate(img_, self.degree)
+        img__ = pygame.transform.rotate(img_, self._degree)
         return img__
 
     def move(self):
         """Function that moves the laser away from the center
         at the right angle
         """
-        self.x += (8+self.speed)*math.cos(math.radians(self.degree))
-        self.y -= (8+self.speed)*math.sin(math.radians(self.degree))
+        self.x += 10*math.cos(math.radians(self._degree))
+        self.y -= 10*math.sin(math.radians(self._degree))
         

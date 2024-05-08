@@ -12,13 +12,12 @@ class Asteroid:
     def __init__(self):
         """Constructor function, that assigns attributes to one asteroid.
         """
-        self.img = self.get_img()
-        self.x, self.y = self.get_coord()
-        self.degree = self.get_degree()
+        self.img = self._get_img()
+        self.x, self.y = self._get_coord()
+        self._degree = self._get_degree()
         self.dir = 0
-        self.speed = 1
 
-    def get_img(self):
+    def _get_img(self):
         """Function that downloads image for the asteroid
         and scales it to be the right size.
 
@@ -41,7 +40,7 @@ class Asteroid:
         asteroid = "asteroid" + str(number) + ".png"
         return asteroid
 
-    def get_coord(self):
+    def _get_coord(self):
         """Function that calculates starting coordinates for the asteroid
 
         Returns:
@@ -64,7 +63,7 @@ class Asteroid:
                 x = random.randint(700, 1700)
         return x, y
 
-    def get_degree(self):
+    def _get_degree(self):
         """Function that calculates the degree between a line drawn from
         the center of the screen to the starting coordinates,
         and a line drawn horizontally from the center
@@ -94,8 +93,8 @@ class Asteroid:
         using the degree
         """
         if self.dir != 0:
-            self.x += self.dir[0]*self.speed
-            self.y += self.dir[1]*self.speed
+            self.x += self.dir[0]
+            self.y += self.dir[1]
         else:
             x_min = 1
             y_min = 1
@@ -103,5 +102,5 @@ class Asteroid:
                 x_min = -1
             if self.y > 250-self.img.get_width()/2:
                 y_min = -1
-            self.x += self.speed*math.sin(math.radians(self.degree))*x_min
-            self.y += self.speed*math.cos(math.radians(self.degree))*y_min
+            self.x += math.sin(math.radians(self._degree))*x_min
+            self.y += math.cos(math.radians(self._degree))*y_min

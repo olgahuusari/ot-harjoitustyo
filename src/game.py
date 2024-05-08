@@ -11,11 +11,11 @@ class Game:
     def __init__(self):
         """Constructor function
         """
-        self.clock = pygame.time.Clock()
+        self._clock = pygame.time.Clock()
         self.spaceship = SpaceShip()
         self.events = Events()
         self.ui = UI()
-        self.tick = 40
+        self._tick = 40
 
     def game_loop(self):
         """Function containing the game loop that runs the game
@@ -25,31 +25,31 @@ class Game:
         while True:
             for event in pygame.event.get():
                 self.events.event_handler(event)
-            self.examine_event_module()
+            self._examine_event_module()
 
             if self.ui.pause is True:
                 self.events.pause = True
-                self.pause_loop()
+                self._pause_loop()
 
             if self.ui.game_over is True:
                 self.events.game_over = True
-                self.game_over_loop()
+                self._game_over_loop()
                 self.ui.asteroids = self.ui.get_asteroids([], 10 + (self.ui.level-1)*5)
 
             self.spaceship.img = self.spaceship.get_img(self.ui.choose_ship)
 
             if self.ui.points >= self.ui.level*10:
                 self.ui.level += 1
-                self.spaceship.speed = self.ui.level
                 self.ui.asteroids = self.ui.get_asteroids(self.ui.asteroids, (self.ui.level-1)*5)
                 self.ui.new_ship = True
+                self._tick += 5
 
             self.ui.draw_window(self.spaceship)
 
             pygame.display.flip()
-            self.clock.tick(self.tick)
+            self._clock.tick(self._tick)
 
-    def examine_event_module(self):
+    def _examine_event_module(self):
         """Function that goes through the the attributes of the 
         Events class and makes appropriate changes to its own attributes
         or those of the UI class
@@ -75,7 +75,7 @@ class Game:
             self.ui.check_clicks(self.events.event_pos)
             self.events.button = False
 
-    def game_over_loop(self):
+    def _game_over_loop(self):
         """Loop that is executed if user loses the game
         """
         while self.events.game_over is True:
@@ -90,8 +90,9 @@ class Game:
         self.ui.points = 0
         self.ui.show_ships = False
         self.ui.choose_ship = 1
+        self._tick = 40
 
-    def pause_loop(self):
+    def _pause_loop(self):
         """Loop that is executed if the game is paused
         """
         while self.events.pause is True:
