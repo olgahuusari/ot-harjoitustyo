@@ -1,9 +1,14 @@
+import os
 import sys
 import pygame
 from spaceship import SpaceShip
 from laser import Laser
 from events import Events
 from ui import UI
+from repository import Repository
+from save import SaveFile
+
+dirname = os.path.dirname(__file__)
 
 class Game:
     """Class containing the game loop 
@@ -15,12 +20,14 @@ class Game:
         self.spaceship = SpaceShip()
         self.events = Events()
         self.ui = UI()
-        self._tick = 40
+        self.tick = 40
+        self.repository = Repository(os.path.join(dirname, "data.csv"))
+        self.ui.setup()
+        self.load_game()
 
     def game_loop(self):
         """Function containing the game loop that runs the game
         """
-        self.ui.setup()
 
         while True:
             for event in pygame.event.get():
@@ -42,12 +49,12 @@ class Game:
                 self.ui.level += 1
                 self.ui.asteroids = self.ui.get_asteroids(self.ui.asteroids, (self.ui.level-1)*5)
                 self.ui.new_ship = True
-                self._tick += 5
+                self.tick += 5
 
             self.ui.draw_window(self.spaceship)
 
             pygame.display.flip()
-            self._clock.tick(self._tick)
+            self._clock.tick(self.tick)
 
     def _examine_event_module(self):
         """Function that goes through the the attributes of the 
@@ -56,20 +63,18 @@ class Game:
         """
         if self.events.quit is True:
             sys.exit()
-        if self.events.rotate_r is True:
-            self.spaceship.degree += 5
-        if self.events.rotate_l is True:
-            self.spaceship.degree -= 5
+        self.spaceship.degree += self.events.rotate
         if self.events.laser is True:
-            if len(self.ui.lasers) <= 1000:
+            if len(self.ui.lasers) < 1000:
                 laser = Laser(self.spaceship.degree)
-                laser.speed = self.ui.level
                 self.ui.lasers.append(laser)
             self.events.laser = False
         if self.events.instructions is False:
             self.ui.instructions = False
         if self.events.pause is True:
             self.ui.pause = True
+        if self.events.save is True:
+            self.save_game()
 
         if self.events.button is True:
             self.ui.check_clicks(self.events.event_pos)
@@ -86,11 +91,8 @@ class Game:
             self.ui.draw_window(self.spaceship)
             pygame.display.flip()
         self.ui.game_over = False
-        self.ui.level = 1
-        self.ui.points = 0
         self.ui.show_ships = False
-        self.ui.choose_ship = 1
-        self._tick = 40
+        self.load_game()
 
     def _pause_loop(self):
         """Loop that is executed if the game is paused
@@ -107,3 +109,16 @@ class Game:
             self.ui.draw_window(self.spaceship)
             pygame.display.flip()
         self.ui.pause = False
+
+    def save_game(self):
+        file = SaveFile(self.ui.points, self.ui.level, self.ui.choose_ship, self.tick)
+        self.repository.save(file)
+        self.ui.timer = 10
+        return file
+
+    def load_game(self):
+        file = self.repository.load()
+        self.ui.points = file.score
+        self.ui.level = file.level
+        self.ui.choose_ship = file.ship
+        self.tick = file.tick

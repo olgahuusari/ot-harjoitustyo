@@ -23,10 +23,11 @@ class UI:
         self._ships = []
         self.show_ships = False
         self._ship_text = self._font.render('Ships', True, (0, 0, 0), (255, 255, 255))
-        self._ship_rect = pygame.Rect(630, 80, 100, 20)
+        self._ship_rect = pygame.Rect(630, 0, 100, 20)
         self.pause = False
         self.choose_ship = 1
         self.new_ship = False
+        self.timer = 0
 
     def setup(self):
         """Function that is executed at the start of the game that creates
@@ -47,12 +48,14 @@ class UI:
         level = self._font.render(f'Level: {self.level}', True, (255, 255, 255), (0, 0, 0))
         self._window.blit(level, (280, 0))
         pause = self._font.render('Press P to pause', True, (255, 255, 255), (0, 0, 0))
-        self._window.blit(pause, (580, 0))
+        self._window.blit(pause, (0, 0))
+        save = self._font.render('Press S to save', True, (255, 255, 255), (0, 0, 0))
+        self._window.blit(save, (0, 20))
 
         self._examine_attributes()
 
-        pygame.draw.rect(self._window, (255, 255, 255), (630, 80, 100, 20))
-        self._window.blit(self._ship_text, (630, 80))
+        pygame.draw.rect(self._window, (255, 255, 255), (630, 0, 100, 20))
+        self._window.blit(self._ship_text, (630, 0))
 
         self._examine_lasers()
 
@@ -83,29 +86,28 @@ class UI:
         things on the screen
         """
         if self.game_over is True:
-            game_lost = self._font.render('Game Over. Start a new one by pressing enter!',
-                                          True, (255, 255, 255), (0, 0, 0))
-            self._window.blit(game_lost, (200, 200))
+            self._render_text('Game Over. Start a new one by pressing enter!', (200, 200))
 
         if self.pause is True:
-            pause = self._font.render('Game paused. Continue by pressing space.',
-                                     True, (255, 255, 255), (0, 0, 0))
-            self._window.blit(pause, (200, 180))
+            self._render_text('Game paused. Continue by pressing space', (200, 180))
 
         if self.new_ship is True:
-            new_ship = self._font.render('New ship!!', True, (255, 255, 255), (0, 0, 0))
-            self._window.blit(new_ship, (630, 100))
+            self._render_text('New ship!!', (630, 20))
 
         if self.show_ships is True:
             self._ship_selection()
 
         if self.instructions is True:
-            text = self._font.render('Rotate the spaceship with left and right arrow keys',
-                                    True, (255, 255, 255), (0, 0, 0,))
-            self._window.blit(text, (200, 130))
-            text2 = self._font.render('Shoot asteroids by pressing the spacebar',
-                                     True, (255, 255, 255), (0, 0, 0))
-            self._window.blit(text2, (200, 150))
+            self._render_text('Rotate the spaceship with left and right arrow keys', (200, 100))
+            self._render_text('Shoot asteroids by pressing the spacebar', (200, 125))
+
+        if self.timer > 0:
+            self._render_text('Game saved!', (0, 40))
+            self.timer -= 1
+
+    def _render_text(self, text, pos):
+        text_render = self._font.render(text, True, (255, 255, 255), (0, 0, 0))
+        self._window.blit(text_render, pos)
 
     def _examine_lasers(self):
         """Function that goes through lasers that are shown on screen
@@ -127,13 +129,11 @@ class UI:
                     self.collide.laser_asteroid = False
                     self.asteroids.remove(asteroid)
                     new_asteroid = Asteroid()
-                    new_asteroid.speed = self.level
                     self.asteroids.append(new_asteroid)
                     self.lasers.remove(laser)
                     break
             rect = laser.img.get_rect()
-            rect = rect.move(laser.x, laser.y)
-            self._window.blit(laser.img, rect)
+            self._window.blit(laser.img, rect.move(laser.x, laser.y))
             if self.pause is True:
                 continue
             laser.move()
@@ -187,7 +187,7 @@ class UI:
         ship = SpaceShip()
         for i in range(1, 6):
             ship_img = ship.get_img(i)
-            ship_pos = (650, 70+i*50)
+            ship_pos = (650, i*50)
             ship_rect = ship_img.get_rect(topleft=ship_pos)
             self._ships.append((ship_img, ship_rect, ship_pos))
 
