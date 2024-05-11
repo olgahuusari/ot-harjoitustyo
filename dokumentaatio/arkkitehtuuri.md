@@ -1,49 +1,68 @@
 # Arkkitehtuuri
 
 ## Koodin rakenne
-Pelin koodi koostuu moduuleista ja luokista eri toiminnoille. Alla oleva luokkakaavio havainnollistaa moduulien välisiä yhteyksiä. Game-moduuli pyörittää peliä, ja kutsuu tarvittaessa muita moduuleja. Spaceship, Asteroid ja Laser luokat luovat ja käsittelevät ruudulla näytettäviä kuvakkeita. Events-luokka käy läpi pelissä tapahtuvat toiminnot ja niiden perusteella moduulit Game ja UI muuttavat pelin kulkua. UI moduuli on vastuussa käyttöliittymästä. Sen kautta myös luodaan asteroidit ja tarkastetaan, onko laser osunut asteroidiin, tai asteroidi avaruusalukseen Collide-luokan avulla.
+Pelin koodi koostuu moduuleista ja luokista eri toiminnoille. Alla oleva luokkakaavio havainnollistaa moduulien välisiä yhteyksiä. Game-moduuli pyörittää peliä, ja kutsuu tarvittaessa muita moduuleja. Spaceship, Asteroid ja Laser luokat luovat ja käsittelevät ruudulla näytettäviä kuvakkeita. Events-luokka käy läpi pelissä tapahtuvat toiminnot ja niiden perusteella moduulit Game ja UI muuttavat pelin kulkua. UI moduuli on vastuussa käyttöliittymästä. Sen kautta myös luodaan asteroidit ja tarkastetaan, onko laser osunut asteroidiin, tai asteroidi avaruusalukseen Collide-luokan avulla. Kaikkia attribuutteja ei ole joissain luokissa merkitty kaavioon selkeyden vuoksi
 
 ## Luokkakaavio
 
 ```mermaid
     classDiagram
     class Game{
-        window
-        lasers
+        clock
+        tick
     }
     class SpaceShip{
         image
         rect
         degree
+        x, y
     }
     class Laser{
         image
         degree
-        x
-        y
+        x, y
     }
     class Events{
-        rotate_r
-        rotate_l
+        rotate
         quit
         laser
+        instructions
+        game_over
+        pause
+        button
+        event_pos
+        save
     }
     class UI{
         window
         lasers
         asteroids
+        ships
         font
-        instructions
+        game_over
+        points
+        level
+        choose_ship
     }
     class Asteroid{
         image
         degree
-        x
-        y
+        x, y
+        direction
     }
     class Collide{
         laser_asteroid
         asteroid_ship
+    }
+    class Repository{
+        file path
+        loaded file
+    }
+    class SaveFile{
+        score
+        level
+        ship
+        tick
     }
 
     UI "1" -- "1" Collide
@@ -52,6 +71,9 @@ Pelin koodi koostuu moduuleista ja luokista eri toiminnoille. Alla oleva luokkak
     Game "1" --"1" Events
     UI "1" --"0..100" Asteroid
     Game "1" --"1" UI
+    Game "1" --"1" Repository
+    Repository "1" --"1" SaveFile
+    Game "1" --".." SaveFile
 
 ```
 ## Sekvenssikaavio pelisilmukasta
