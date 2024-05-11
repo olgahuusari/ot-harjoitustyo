@@ -5,13 +5,17 @@ Asteroidit on peli, jossa pelaaja ohjaa näytön keskellä olevaa avaruusalusta 
 
 
 ### Dokumentaatio
-[vaatimusmäärittely](https://github.com/olgahuusari/ot-harjoitustyo/blob/main/dokumentaatio/vaatimusmaarittely.md)
+- [Vaatimusmäärittely](https://github.com/olgahuusari/ot-harjoitustyo/blob/main/dokumentaatio/vaatimusmaarittely.md)
 
-[työaikakirjanpito](https://github.com/olgahuusari/ot-harjoitustyo/tree/main/dokumentaatio/työaikakirjanpito.md)
+- [Työaikakirjanpito](https://github.com/olgahuusari/ot-harjoitustyo/tree/main/dokumentaatio/työaikakirjanpito.md)
 
-[changelog](https://github.com/olgahuusari/ot-harjoitustyo/tree/main/dokumentaatio/changelog.md)
+- [Changelog](https://github.com/olgahuusari/ot-harjoitustyo/tree/main/dokumentaatio/changelog.md)
 
-[arkkitehtuuri](https://github.com/olgahuusari/ot-harjoitustyo/blob/main/dokumentaatio/arkkitehtuuri.md)
+- [Arkkitehtuuri](https://github.com/olgahuusari/ot-harjoitustyo/blob/main/dokumentaatio/arkkitehtuuri.md)
+
+- [Testausdokumentti](https://github.com/olgahuusari/ot-harjoitustyo/blob/main/dokumentaatio/testaus.md)
+
+- [Käyttöohje](https://github.com/olgahuusari/ot-harjoitustyo/blob/main/dokumentaatio/käyttöohje.md)
 
 ### Asennus
 Asenna riippuvuudet komennolla
