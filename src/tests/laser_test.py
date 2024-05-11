@@ -13,4 +13,4 @@ class TestLaser(unittest.TestCase):
 
     def test_laser_correct_degree(self):
         laser = Laser(self.spaceship.degree)
-        self.assertEqual(laser.degree, self.spaceship.degree)
+        self.assertEqual(laser._degree, self.spaceship.degree)
