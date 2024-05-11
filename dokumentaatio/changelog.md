@@ -22,3 +22,9 @@
 - Pelissä voi nyt päästä eri tasoille, kun saa tarpeeksi pisteitä. Viitostasolle asti uudelle tasolle päästessä käytettäväksi saa eri näköisen avaruusaluksen. Lisäksi pelin vauhti kiihtyy.
 - Pelin voi pistää pauselle
 - Docstring-dokumentaatio lisätty koodiin
+
+## Viikko 7
+- Uutta toiminnallisuutta: käyttäjä voi tallentaa pelin, ja tallennettu data ladataan, kun peli aukaistaan seuraavan kerran, tai jos pelin häviää
+- Tallennusta varten uudet luokat Repository ja SaveFile
+- Testejä lisätty
+
