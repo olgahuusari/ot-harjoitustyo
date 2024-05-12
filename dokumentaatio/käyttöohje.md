@@ -17,4 +17,6 @@ Jokaisesta tuhotusta asteroidista saa pisteen. Kun pisteitä on kerääntynyt ta
 
 Avaruusaluksia on useanlaisia, ja niitä pääse valitsemaan painamalla Ships-nappia näytöllä. Aluksi niitä on vain yksi, mutta päästessä uusille tasoille, niitä saa käyttöön enemmän.
 
-Pelin saa keskeytettyä väliaikaisesti painamalla Pause game-nappia.
+Pelin saa keskeytettyä väliaikaisesti painamalla P-näppäintä.
+
+Pelin saa tallennettua painamalla S-näppäintä, ja aiemmin tallennetun pelin saa ladattua painamalla näytöllä Load game -nappia.
