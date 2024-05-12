@@ -24,7 +24,7 @@
 - Docstring-dokumentaatio lisätty koodiin
 
 ## Viikko 7
-- Uutta toiminnallisuutta: käyttäjä voi tallentaa pelin, ja tallennettu data ladataan, kun peli aukaistaan seuraavan kerran, tai jos pelin häviää
+- Uutta toiminnallisuutta: käyttäjä voi tallentaa pelin, ja ladata tallennetun pelin uudestaan
 - Tallennusta varten uudet luokat Repository ja SaveFile
-- Testejä lisätty
+- Testejä ja dokumentaatiota lisätty
 
