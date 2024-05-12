@@ -19,5 +19,6 @@
 | 28.4. |  2   | arkkitehtuurin dokumentaatiota lisää, ja käyttöohjeet luotu |
 | 6.5.  |  3   | bugien korjausta, pieniä muutoksia koodiin |
 | 8.5.  |  2   | muutoksia koodin toimintaan, testausdokumentin aloitus |
-|  yht. |  47  |  |
+| 11.5  |  5   | uutta toiminnallisuutta ja testejä |
+|  yht. |  52  |  |
 
