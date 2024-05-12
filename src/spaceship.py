@@ -11,7 +11,6 @@ class SpaceShip:
         """Constructor function that assigns the starting values of the
         attributes
         """
-        super().__init__()
         self.img = self.get_img(1)
         self.rect = self.img.get_rect(center=(350, 250))
         self.degree = 0

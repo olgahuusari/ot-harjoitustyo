@@ -11,7 +11,8 @@ from save import SaveFile
 dirname = os.path.dirname(__file__)
 
 class Game:
-    """Class containing the game loop 
+    """Class containing the game loops. 
+    Handles the game overall
     """
     def __init__(self):
         """Constructor function
@@ -23,7 +24,6 @@ class Game:
         self.tick = 40
         self.repository = Repository(os.path.join(dirname, "data.csv"))
         self.ui.setup()
-        self.load_game()
 
     def game_loop(self):
         """Function containing the game loop that runs the game
@@ -42,6 +42,10 @@ class Game:
                 self.events.game_over = True
                 self._game_over_loop()
                 self.ui.asteroids = self.ui.get_asteroids([], 10 + (self.ui.level-1)*5)
+
+            if self.ui.load_game is True:
+                self.load_game()
+                self.ui.load_game = False
 
             self.spaceship.img = self.spaceship.get_img(self.ui.choose_ship)
 
@@ -75,6 +79,7 @@ class Game:
             self.ui.pause = True
         if self.events.save is True:
             self.save_game()
+            self.events.save = False
 
         if self.events.button is True:
             self.ui.check_clicks(self.events.event_pos)
@@ -92,7 +97,10 @@ class Game:
             pygame.display.flip()
         self.ui.game_over = False
         self.ui.show_ships = False
-        self.load_game()
+        self.ui.points = 0
+        self.ui.level = 1
+        self.ui.choose_ship = 1
+        self.tick = 40
 
     def _pause_loop(self):
         """Loop that is executed if the game is paused
@@ -111,12 +119,19 @@ class Game:
         self.ui.pause = False
 
     def save_game(self):
+        """Function that saves the game
+
+        Returns:
+            SaveFile object: contains saved data
+        """
         file = SaveFile(self.ui.points, self.ui.level, self.ui.choose_ship, self.tick)
         self.repository.save(file)
-        self.ui.timer = 10
+        self.ui.timer = 2*self.tick
         return file
 
     def load_game(self):
+        """Function that loads previously saved data
+        """
         file = self.repository.load()
         self.ui.points = file.score
         self.ui.level = file.level

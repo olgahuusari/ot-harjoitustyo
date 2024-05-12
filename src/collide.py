@@ -14,7 +14,7 @@ class Collide:
         self.asteroid_ship = False
 
     def laser_hit_asteroid(self, laser, asteroid):
-        """Function that calculates whether or not a laser hit an asteroid
+        """Function that calculates whether or not a laser hit has an asteroid
 
         Args:
             laser (class): class for a specific laser

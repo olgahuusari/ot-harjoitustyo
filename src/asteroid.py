@@ -22,7 +22,7 @@ class Asteroid:
         and scales it to be the right size.
 
         Returns:
-            Image: image for asteroid
+            Img: image for asteroid
         """
         img = pygame.image.load(os.path.join(
             dirname, 'assets', self.get_asteroid()))
@@ -34,7 +34,7 @@ class Asteroid:
         is used for this specific asteroid.
 
         Returns:
-            String: name of a png-file
+            Str: name of a png-file
         """
         number = random.randint(1, 3)
         asteroid = "asteroid" + str(number) + ".png"

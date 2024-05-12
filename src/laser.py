@@ -14,7 +14,6 @@ class Laser:
             degree (int): degree that states at which direction the laser
             should be pointed at
         """
-        super().__init__()
         self._degree = degree
         self.img = self._get_img()
         self.x = 350
@@ -25,7 +24,7 @@ class Laser:
         the right size and rotates it at the right angle
 
         Returns:
-            Image: correctly scaled and rotated image of the laser
+            Img: correctly scaled and rotated image of the laser
         """
         img = pygame.image.load(os.path.join(
             dirname, 'assets', 'laser.png'))

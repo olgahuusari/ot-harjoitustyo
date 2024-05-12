@@ -1,7 +1,11 @@
 import pygame
 
 class Events:
+    """Class that handles pygame events
+    """
     def __init__(self):
+        """Constructor function
+        """
         self.rotate = 0
         self.quit = False
         self.laser = False
@@ -13,6 +17,12 @@ class Events:
         self.save = False
 
     def event_handler(self, event):
+        """Function that evaluates a single event and changes the class'
+        attributes accordingly
+
+        Args:
+            event (pygame event)
+        """
         if event.type == pygame.QUIT:
             self.quit = True
         if event.type == pygame.KEYDOWN:
@@ -26,6 +36,11 @@ class Events:
                 self.rotate = 0
 
     def _key_down_events(self, event):
+        """Handles events that occur when a key is pressed
+
+        Args:
+            event (pygame event)
+        """
         if event.key == pygame.K_RIGHT:
             self.rotate = -5
         if event.key == pygame.K_LEFT:

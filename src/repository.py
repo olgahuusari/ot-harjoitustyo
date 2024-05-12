@@ -8,7 +8,7 @@ class Repository:
         """constructor function
 
         Args:
-            file_path (str): path to this file
+            file_path (str): path to the .cvs file
         """
         self._file_path = file_path
         self.loaded_file = SaveFile(0, 1, 1, 40)

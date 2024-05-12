@@ -22,9 +22,10 @@ class UI:
         self.level = 1
         self._ships = []
         self.show_ships = False
-        self._ship_text = self._font.render('Ships', True, (0, 0, 0), (255, 255, 255))
         self._ship_rect = pygame.Rect(630, 0, 100, 20)
+        self._load_rect = pygame.Rect(0, 0, 100, 20)
         self.pause = False
+        self.load_game = False
         self.choose_ship = 1
         self.new_ship = False
         self.timer = 0
@@ -43,19 +44,20 @@ class UI:
             spaceship (class): class for the spaceship
         """
         self._window.fill((0, 0, 0))
-        points = self._font.render(f'Points: {self.points}', True, (255, 255, 255), (0, 0, 0))
-        self._window.blit(points, (360, 0))
-        level = self._font.render(f'Level: {self.level}', True, (255, 255, 255), (0, 0, 0))
-        self._window.blit(level, (280, 0))
-        pause = self._font.render('Press P to pause', True, (255, 255, 255), (0, 0, 0))
-        self._window.blit(pause, (0, 0))
-        save = self._font.render('Press S to save', True, (255, 255, 255), (0, 0, 0))
-        self._window.blit(save, (0, 20))
+        self._render_text(f'Points: {self.points}', (360, 0))
+        self._render_text(f'Level: {self.level}', (280, 0))
+        self._render_text('Press P to pause', (0, 40))
+        self._render_text('Press S to save', (0, 20))
 
         self._examine_attributes()
 
         pygame.draw.rect(self._window, (255, 255, 255), (630, 0, 100, 20))
-        self._window.blit(self._ship_text, (630, 0))
+        ship = self._font.render('Ships', True, (0, 0, 0), (255, 255, 255))
+        self._window.blit(ship, (630, 0))
+
+        pygame.draw.rect(self._window, (255, 255, 255), (0, 0, 100, 20))
+        load = self._font.render('Load game', True, (0, 0, 0), (255, 255, 255))
+        self._window.blit(load, (0, 0))
 
         self._examine_lasers()
 
@@ -77,7 +79,6 @@ class UI:
         """
         for _ in range(0, i):
             asteroid = Asteroid()
-            asteroid.speed = self.level
             asteroids.append(asteroid)
         return asteroids
 
@@ -102,10 +103,16 @@ class UI:
             self._render_text('Shoot asteroids by pressing the spacebar', (200, 125))
 
         if self.timer > 0:
-            self._render_text('Game saved!', (0, 40))
+            self._render_text('Game saved!', (110, 20))
             self.timer -= 1
 
     def _render_text(self, text, pos):
+        """Function that renders text on screen
+
+        Args:
+            text (str): text to be rendered
+            pos (tuple): coordinates for the text
+        """
         text_render = self._font.render(text, True, (255, 255, 255), (0, 0, 0))
         self._window.blit(text_render, pos)
 
@@ -167,8 +174,10 @@ class UI:
         attributes accordingly
 
         Args:
-            event_pos ((int, int)): coordinates of where the user clicked
+            event_pos (tuple): coordinates of where the user clicked
         """
+        if self._load_rect.collidepoint(event_pos) is True:
+            self.load_game = True
         if self._ship_rect.collidepoint(event_pos) is True:
             self.new_ship = False
             if self.show_ships is True:
