@@ -20,5 +20,6 @@
 | 6.5.  |  3   | bugien korjausta, pieniä muutoksia koodiin |
 | 8.5.  |  2   | muutoksia koodin toimintaan, testausdokumentin aloitus |
 | 11.5  |  5   | uutta toiminnallisuutta ja testejä |
-|  yht. |  52  |  |
+| 12.5. |  2   | viimeistelyä |
+|  yht. |  54  |  |
 
