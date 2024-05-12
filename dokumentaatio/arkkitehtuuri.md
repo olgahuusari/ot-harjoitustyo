@@ -98,9 +98,13 @@ sequenceDiagram
     deactivate UI
     Game ->> Events : event_handler(event)
     Game ->> Game : examine_event_module()
-    Game ->> Events : quit, rotate_l, rotate_r, laser, instructions, button
+    Game ->> Events : quit, laser, instructions, button
     activate Events
     Events -->> Game : everything False
+    deactivate Events
+    Game ->> Events : rotate
+    activate Events
+    Events -->> Game : 0
     deactivate Events
     Game ->> UI : choose_ship
     activate UI
